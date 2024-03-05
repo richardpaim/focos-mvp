@@ -12,10 +12,20 @@ const googleSat = L.tileLayer("https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z
   attribution: "&copy; OpenStreetMap contributors",
 });
 
+// Criando um controle personalizado com a logo
+var logoControl = L.control({position: 'bottomleft'});
+
+logoControl.onAdd = function(map) {
+    var logoDiv = L.DomUtil.create('div', 'leaflet-control-logo');
+    logoDiv.innerHTML = '<img src="../assets/logoMaps.png" alt="Logo" width="100" height="100">';
+    return logoDiv;
+};
+
+// Adicionando o controle ao mapa
+logoControl.addTo(map);
 
 
-
-fetch("../api/foco_calor.json").then(function(response) {
+fetch("https://raw.githubusercontent.com/richardpaim/focos-mvp/main/api/foco_calor.json").then(function(response) {
 return response.json();
 }).then(function(data) {
     var focosCalorLayer = L.geoJSON(data, {
