@@ -31,8 +31,8 @@ return response.json();
     var focosCalorLayer = L.geoJSON(data, {
         style: function(feature) {
             return {
-                fillColor: 'red',  // Cor de preenchimento vermelha
-                color: 'red',      // Cor da borda vermelha
+                fillColor: 'black',  // Cor de preenchimento vermelha
+                color: 'black',      // Cor da borda vermelha
                 weight: 2          // Largura da borda
             };
         }
@@ -66,7 +66,22 @@ var features = turf.featureCollection([
     turf.point([-46.4329, -23.8722 ], {"name": "Presidente Bernardes - Cubatão-SP"}),
     turf.point([-47.1315, -22.7282 ], {"name": "Planalto de Paulínia - Paulínia-SP"}),
   ]);
+  // Função para gerar uma cor com base no tamanho do buffer
+function getColor(size) {
+  // Defina os limites de tamanho do buffer e as cores correspondentes
+  var colors = ['#FF0000','#FFA500','#FFFF00',  ]; // Vemelho, Laranja, Amarelo, 
+  var thresholds = [1, 2, 6, 20]; // Limites de tamanho do buffer em quilômetros
   
+  // Itere sobre os limites e encontre a cor correspondente
+  for (var i = 0; i < thresholds.length; i++) {
+      if (size <= thresholds[i]) {
+          return colors[i];
+      }
+  }
+  
+  // Se o tamanho for maior que todos os limites, retorne a última cor
+  return colors[colors.length - 1];
+}
   // Definindo os tamanhos dos buffers
   var bufferSizes = [1, 2, 6, 20]; // Em quilômetros
 
@@ -74,8 +89,11 @@ var features = turf.featureCollection([
   // Adiciona os buffers das refinarias ao mapa
   bufferSizes.forEach(function(size) {
     var buffer = turf.buffer(features, size, { units: 'kilometers' });
+    var color = getColor(size); // Obtém a cor com base no tamanho do buffer
     var bufferLayer = L.geoJSON(buffer, {
       style: {
+        fillColor: color,
+        color: color,
         weight: 2,
         opacity: 0.6,
         fillOpacity: 0.2
