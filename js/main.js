@@ -17,7 +17,7 @@ var logoControl = L.control({position: 'bottomleft'});
 
 logoControl.onAdd = function(map) {
     var logoDiv = L.DomUtil.create('div', 'leaflet-control-logo');
-    logoDiv.innerHTML = '<img src="../assets/logoMaps.png" alt="Logo" width="100" height="100">';
+    logoDiv.innerHTML = '<img src="./assets/logoMaps.png" alt="Logo" width="100" height="100">';
     return logoDiv;
 };
 
