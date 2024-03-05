@@ -15,7 +15,7 @@ const googleSat = L.tileLayer("https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z
 
 
 
-fetch("https://richardpaim.github.io/api/foco_calor.json").then(function(response) {
+fetch("https://raw.githubusercontent.com/richardpaim/focos-mvp/main/api/foco_calor.json").then(function(response) {
 return response.json();
 }).then(function(data) {
     var focosCalorLayer = L.geoJSON(data, {
