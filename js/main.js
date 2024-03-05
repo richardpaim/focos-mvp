@@ -70,7 +70,7 @@ var features = turf.featureCollection([
 function getColor(size) {
   // Defina os limites de tamanho do buffer e as cores correspondentes
   var colors = ['#FF0000','#FFA500','#FFFF00',  ]; // Vemelho, Laranja, Amarelo, 
-  var thresholds = [1, 2, 6, 20]; // Limites de tamanho do buffer em quilômetros
+  var thresholds = [1.5, 4, 10, 20]; // Limites de tamanho do buffer em quilômetros
   
   // Itere sobre os limites e encontre a cor correspondente
   for (var i = 0; i < thresholds.length; i++) {
