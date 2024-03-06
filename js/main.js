@@ -12,6 +12,39 @@ const googleSat = L.tileLayer("https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z
   attribution: "&copy; OpenStreetMap contributors",
 });
 
+//Iníco Camada cartoDBvar 
+const cartoDB  = L.tileLayer(  "http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",  { 
+     maxZoom: 20,    
+     attribution: "&copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> &copy; <a href='http://cartodb.com/attributions'>CartoDB</a>", 
+});
+  // Fim Camada cartoDB
+const focos_calor = L.tileLayer.wms('https://firms.modaps.eosdis.nasa.gov/mapserver/wms/fires/c844205829e4cdbf1c4c47eee6bfd0ff', {
+    layers: 'fires_viirs_snpp_24',
+    format: 'image/png',
+    transparent: true,
+})
+const painel = L.tileLayer.wms('https://panorama.sipam.gov.br/geoserver/painel_do_fogo/ows?', {
+    layers: 'painel_do_fogo:mv_evento_filtro',
+    format: 'image/png',
+  transparent: true,
+
+}).addTo(map);
+
+
+// const Url_newNasa = `https://map1b.vis.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?`
+// // Início Camadas Nasa
+// var TerraModis = L.tileLayer.wms(Url_newNasa, {layers: "MODIS_Terra_CorrectedReflectance_TrueColor", format: "image/png", transparent: true });
+// // var AquaModis = L.tileLayer.wms(Url_newNasa, { layers: "MODIS_Aqua_CorrectedReflectance_TrueColor",  format: "image/png",   transparent: true});
+// // var ViirsNoaa = L.tileLayer.wms(Url_newNasa, { layers: "VIIRS_NOAA20_CorrectedReflectance_TrueColor",  format: "image/png",   transparent: true});
+// // var ViirsSnpp = L.tileLayer.wms(Url_newNasa, {  layers: "VIIRS_SNPP_CorrectedReflectance_TrueColor",  format: "image/png", transparent: true});
+// // var nighttime = L.tileLayer.wms(Url_newNasa, {  layers: "VIIRS_SNPP_DayNightBand_ENCC",  format: "image/png", transparent: true,});
+// // var TerraModisBands = L.tileLayer.wms(Url_newNasa, {  layers: "MODIS_Terra_CorrectedReflectance_Bands721",  format: "image/png", transparent: true});
+// // var AquaModisBands = L.tileLayer.wms(Url_newNasa, {  layers: "MODIS_Aqua_CorrectedReflectance_Bands721",  format: "image/png", transparent: true});
+// // var ViirsNoaaBands = L.tileLayer.wms(Url_newNasa, {  layers: "VIIRS_NOAA20_CorrectedReflectance_BandsM11-I2-I1",  format: "image/png",transparent: true});
+// // var ViirsSnppBands = L.tileLayer.wms(Url_newNasa, {  layers: "VIIRS_SNPP_CorrectedReflectance_BandsM11-I2-I1",  format: "image/png",transparent: true});
+
+
+
 // Criando um controle personalizado com a logo
 var logoControl = L.control({position: 'bottomleft'});
 
@@ -25,28 +58,29 @@ logoControl.onAdd = function(map) {
 logoControl.addTo(map);
 
 
-fetch("https://raw.githubusercontent.com/richardpaim/focos-mvp/main/api/foco_calor.json").then(function(response) {
-return response.json();
-}).then(function(data) {
-    var focosCalorLayer = L.geoJSON(data, {
-        style: function(feature) {
-            return {
-                fillColor: 'black',  // Cor de preenchimento vermelha
-                color: 'black',      // Cor da borda vermelha
-                weight: 2          // Largura da borda
-            };
-        }
-    });
-    focosCalorLayer.addTo(map);
-});
+// fetch("https://raw.githubusercontent.com/richardpaim/focos-mvp/main/api/foco_calor.json").then(function(response) {
+// return response.json();
+// }).then(function(data) {
+//     var focosCalorLayer = L.geoJSON(data, {
+//         style: function(feature) {
+//             return {
+//                 fillColor: 'black',  // Cor de preenchimento vermelha
+//                 color: 'black',      // Cor da borda vermelha
+//                 weight: 2          // Largura da borda
+//             };
+//         }
+//     });
+//     focosCalorLayer.addTo(map);
+// });
 var baseMaps = {
     "OpenStreetMap": osm,
     "Google Satélite": googleSat,
-
+    "Carto": cartoDB
     
 };
   var overlayMaps = {
-   // "Focos de Calor": focosCalorLayer
+    "Focos de Calor - Nasa": focos_calor,
+    "Focos de Calor - Sipam": painel,
   };
 
   L.control.layers(baseMaps,overlayMaps).addTo(map);
@@ -69,7 +103,7 @@ var features = turf.featureCollection([
   // Função para gerar uma cor com base no tamanho do buffer
 function getColor(size) {
   // Defina os limites de tamanho do buffer e as cores correspondentes
-  var colors = ['#FF0000','#FFA500','#FFFF00',  ]; // Vemelho, Laranja, Amarelo, 
+  var colors = ['#FF0000','#FFA500','#FFFF00'  ]; // Vemelho, Laranja, Amarelo, 
   var thresholds = [1.5, 4, 10, 20]; // Limites de tamanho do buffer em quilômetros
   
   // Itere sobre os limites e encontre a cor correspondente
