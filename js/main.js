@@ -5,12 +5,12 @@ var map = L.map('map').setView([-14.235, -51.925], 4);
 const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
+})
 const googleSat = L.tileLayer("https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}", {
   maxZoom: 20,
   subdomains: ["mt0", "mt1", "mt2", "mt3"],
   attribution: "&copy; OpenStreetMap contributors",
-});
+}).addTo(map);
 
 //Iníco Camada cartoDBvar 
 const cartoDB  = L.tileLayer(  "http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",  { 
@@ -18,17 +18,30 @@ const cartoDB  = L.tileLayer(  "http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x
      attribution: "&copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> &copy; <a href='http://cartodb.com/attributions'>CartoDB</a>", 
 });
   // Fim Camada cartoDB
-const focos_calor = L.tileLayer.wms('https://firms.modaps.eosdis.nasa.gov/mapserver/wms/fires/c844205829e4cdbf1c4c47eee6bfd0ff', {
-    layers: 'fires_viirs_snpp_24',
-    format: 'image/png',
-    transparent: true,
-})
-const painel = L.tileLayer.wms('https://panorama.sipam.gov.br/geoserver/painel_do_fogo/ows?', {
+  const painel = L.tileLayer.wms('https://panorama.sipam.gov.br/geoserver/painel_do_fogo/ows?', {
     layers: 'painel_do_fogo:mv_evento_filtro',
     format: 'image/png',
   transparent: true,
 
 }).addTo(map);
+const focos_calor = L.tileLayer.wms('https://firms.modaps.eosdis.nasa.gov/mapserver/wms/fires/c844205829e4cdbf1c4c47eee6bfd0ff', {
+    layers: 'fires_viirs_snpp_24',
+    format: 'image/png',
+    transparent: true,
+})
+
+const ibge_muni = L.tileLayer.wms('https://geoservicos.ibge.gov.br/geoserver/ows?', {
+    layers: 'CGEO:LIM_Municipios2013',
+    format: 'image/png',
+  transparent: true,
+})
+const ibge_estadual = L.tileLayer.wms('https://geoservicos.ibge.gov.br/geoserver/ows?', {
+    layers: 'CGEO:C02_limite_estadual_2010',
+    format: 'image/png',
+  transparent: true,
+
+})
+
 
 
 // const Url_newNasa = `https://map1b.vis.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?`
@@ -50,7 +63,7 @@ var logoControl = L.control({position: 'bottomleft'});
 
 logoControl.onAdd = function(map) {
     var logoDiv = L.DomUtil.create('div', 'leaflet-control-logo');
-    logoDiv.innerHTML = '<img src="./assets/logoMaps.png" alt="Logo" width="100" height="100">';
+    logoDiv.innerHTML = '<img src="./assets/logoHapia.png" alt="Logo" width="100" height="100">';
     return logoDiv;
 };
 
@@ -66,8 +79,10 @@ var baseMaps = {
     
 };
   var overlayMaps = {
-    "Focos de Calor - Nasa": focos_calor,
-    "Focos de Calor - Sipam": painel,
+    "Focos de Calor": focos_calor,
+    "Focos de Calor ": painel,
+    "Limite dos Municípios - IBGE" : ibge_muni,
+    "Limite Estadual - IBGE": ibge_estadual
   };
 
   L.control.layers(baseMaps,overlayMaps).addTo(map);
