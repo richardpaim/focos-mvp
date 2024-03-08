@@ -2,6 +2,7 @@
 
 var map = L.map('map').setView([-14.235, -51.925], 4);
 
+
 const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -30,15 +31,17 @@ const focos_calor = L.tileLayer.wms('https://firms.modaps.eosdis.nasa.gov/mapser
     transparent: true,
 })
 
-const ibge_muni = L.tileLayer.wms('https://geoservicos.ibge.gov.br/geoserver/ows?', {
-    layers: 'CGEO:LIM_Municipios2013',
+const ibge_muni = L.tileLayer.wms('https://panorama.sipam.gov.br/geoserver/painel_do_fogo/ows?', {
+    layers: 'painel_do_fogo:ibge_bc250_lim_municipio_a',
     format: 'image/png',
-  transparent: true,
+    transparent: true,
+    
 })
 const ibge_estadual = L.tileLayer.wms('https://geoservicos.ibge.gov.br/geoserver/ows?', {
     layers: 'CGEO:C02_limite_estadual_2010',
     format: 'image/png',
-  transparent: true,
+    transparent: true,
+   
 
 })
 
