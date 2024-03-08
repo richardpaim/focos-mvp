@@ -82,8 +82,8 @@ var baseMaps = {
     
 };
   var overlayMaps = {
-    "Focos de Calor": focos_calor,
-    "Focos de Calor ": painel,
+    "Focos de Calor - MODIS": focos_calor,
+    "Focos de Calor - NOAA20/VIIRS ": painel,
     "Limite dos Municípios - IBGE" : ibge_muni,
     "Limite Estadual - IBGE": ibge_estadual
   };
