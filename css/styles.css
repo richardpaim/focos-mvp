@@ -4783,7 +4783,7 @@ textarea.form-control-lg {
 .list-group {
   --bs-list-group-color: #212529;
   --bs-list-group-bg: #fff;
-  --bs-list-group-border-color: rgba(0, 0, 0, 0.125);
+  --bs-list-group-border-color: rgba(255, 254, 254, 0.125);
   --bs-list-group-border-width: 1px;
   --bs-list-group-border-radius: 0.375rem;
   --bs-list-group-item-padding-x: 1rem;
@@ -10837,8 +10837,7 @@ textarea.form-control-lg {
 
 #sidebar-wrapper .sidebar-heading {
   padding: 0.875rem 1.25rem;
-  font-size: 1.2rem;
-  background-color: #747171 !important;
+  background-color: #000 !important;
 }
 
 #sidebar-wrapper .list-group {
@@ -10875,4 +10874,14 @@ body{
     font-style: normal;
     font-size: 0.8rem;
   }
+  .navbar,#sidebar-wrapper{
+    background-color: #000 !important;
+  }
+  .list-group-item{
+  background-color: #000 !important;
+  color: #fff !important;
+}
+.posicao{
+  text-align: center;
+}
   
