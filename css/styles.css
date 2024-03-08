@@ -635,8 +635,8 @@ progress {
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
   width: 100%;
-  padding-right: calc(var(--bs-gutter-x) * 0.5);
-  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  /* padding-right: calc(var(--bs-gutter-x) * 0.5); */
+  /* padding-left: calc(var(--bs-gutter-x) * 0.5); */
   margin-right: auto;
   margin-left: auto;
 }
@@ -10836,7 +10836,7 @@ textarea.form-control-lg {
 }
 
 #sidebar-wrapper .sidebar-heading {
-  padding: 0.875rem 1.25rem;
+  padding: 0.78rem;
   background-color: #000 !important;
 }
 
@@ -10874,8 +10874,27 @@ body{
     font-style: normal;
     font-size: 0.8rem;
   }
+  .navbar{
+    padding: 0.62rem;
+  }
   .navbar,#sidebar-wrapper{
     background-color: #000 !important;
+  }
+  #sidebarToggle{
+    background-color: #2D7A59;
+    border: #2D7A59;
+    margin-left: 1rem;
+    width: 4rem;
+    height: 2rem;
+    border-radius: 10%;
+    color: #fff;
+    font-size: 1rem;
+    
+  }
+  #sidebarToggle:hover{
+    background-color: #1C905E;
+    border: 1px solid #00FFA4;
+  
   }
   .list-group-item{
   background-color: #000 !important;
