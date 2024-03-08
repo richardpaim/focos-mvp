@@ -58,20 +58,7 @@ logoControl.onAdd = function(map) {
 logoControl.addTo(map);
 
 
-// fetch("https://raw.githubusercontent.com/richardpaim/focos-mvp/main/api/foco_calor.json").then(function(response) {
-// return response.json();
-// }).then(function(data) {
-//     var focosCalorLayer = L.geoJSON(data, {
-//         style: function(feature) {
-//             return {
-//                 fillColor: 'black',  // Cor de preenchimento vermelha
-//                 color: 'black',      // Cor da borda vermelha
-//                 weight: 2          // Largura da borda
-//             };
-//         }
-//     });
-//     focosCalorLayer.addTo(map);
-// });
+
 var baseMaps = {
     "OpenStreetMap": osm,
     "Google Satélite": googleSat,
@@ -94,7 +81,7 @@ var features = turf.featureCollection([
     turf.point([-49.3607, -25.5679], {"name": "Presidente Getúlio Vargas - Araucária-PR" }),
     turf.point([-38.5718, -12.7076], {"name": "Landulpho Alves - São Francisco do Conde-BH" }),
     turf.point([-59.9538, -3.1464],  {"name": "Isaac Sabbá - Manaus-AM" }),
-    turf.point([-51.1627, -29.8716 ], {"name": "Alberto Pasqualini - Canoas-RS - Esteio-RS"}),
+    turf.point([-51.1627, -29.8716 ], {"name": "Alberto Pasqualini - Esteio-RS"}),
     turf.point([-45.8242, -23.1930 ], {"name": "Henrique Lage - São José dos Campos-SP"}),
     turf.point([-46.4802, -23.6394 ], {"name": "Capuava - Mauá-SP"}),
     turf.point([-46.4329, -23.8722 ], {"name": "Presidente Bernardes - Cubatão-SP"}),
