@@ -108,8 +108,8 @@ var features = turf.featureCollection([
   // Função para gerar uma cor com base no tamanho do buffer
 function getColor(size) {
   // Defina os limites de tamanho do buffer e as cores correspondentes
-  var colors = ['#FF0000','#FFA500','#FFFF00'  ]; // Vemelho, Laranja, Amarelo, 
-  var thresholds = [1.5, 4, 10, 20]; // Limites de tamanho do buffer em quilômetros
+  var colors = ['#FF0000','#FFA500','#CD853F','#FFFF00']; // Vemelho, Laranja, Amarelo, 
+  var thresholds = [1.5, 4, 8, 15]; // Limites de tamanho do buffer em quilômetros
   
   // Itere sobre os limites e encontre a cor correspondente
   for (var i = 0; i < thresholds.length; i++) {
@@ -122,7 +122,7 @@ function getColor(size) {
   return colors[colors.length - 1];
 }
   // Definindo os tamanhos dos buffers
-  var bufferSizes = [1, 2, 6, 20]; // Em quilômetros
+  var bufferSizes = [1.5, 4, 8, 15]; // Em quilômetros
 
 
   // Adiciona os buffers das refinarias ao mapa
