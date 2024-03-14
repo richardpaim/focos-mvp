@@ -78,7 +78,7 @@ logoControl.addTo(map);
 var baseMaps = {
     "OpenStreetMap": osm,
     "Google Satélite": googleSat,
-    "Carto": cartoDB
+    "Mapa Noturno": cartoDB
     
 };
   var overlayMaps = {
